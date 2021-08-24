@@ -32,7 +32,7 @@
   <div class="container">
     <div class="row">
       <div class="col-6">
-        <canvas id="mychart"width="400" height="200"></canvas>
+        <canvas id="myChart"width="400" height="200"></canvas>
       </div>
 
     </div>
@@ -68,8 +68,7 @@
   </div> 
 
   <script>
-     
-        function loadData(){
+      
           //alert("Hello");
           let url ="https://api.thingspeak.com/channels/1458420/feeds.json?results=1";
         
@@ -85,31 +84,32 @@
           .fail(function(error){
             console.log(error);
           });
-        }
+         
           function showChart(data){
-              var ctx = document.getElementById("myChart").getContext("2d");
-              var mychart = new Chart(ctx,{
-                type : 'line',
-                data :{
+              var ctx = document.getElementById('myChart').getContext('2d');
+          
+
+              var myChart = new Chart(ctx,{
+                type:'Line',
+                data:{
                   labels:data.xlabel,
-                  datasets :[{
-                    label:data.label,
-                    data:data.data
-                  }]
+                  datasets:[{
+                      label:data.label,
+                      data:data.data
+                    }
+                  ]
                 }
               });
           }
+          $(()=>{
+            var data=Object();
+            data.xlabel=[1,2,3,4,5,6,7];
+            data.data = [2,3,4,5,10,12,11];
+            data.label= "My First Object";
 
-          $(() =>{
-            var data= Object();
-            data.xlabel = [1,2,3,4,5];
-            data.data = [2,3,4,5,10];
-            data.label='My First Object';
             showChart(data);
-            loadData();
-
-          });
-
+          })
+        
      
       
   </script>
