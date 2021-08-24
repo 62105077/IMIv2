@@ -104,13 +104,32 @@
                 }
               });
           }
+          function showChart1(data){
+              var ctx = document.getElementById('myChart1').getContext('2d');
+              var myChart = new Chart(ctx,{
+                type:'line',
+                data:{
+                  labels:data.xlabel,
+                  datasets:[{
+                      label:data.label,
+                      data:data.data
+                    }]
+                }
+              });
+          }
           $(()=>{
             var data=Object();
             data.xlabel=[1,2,3,4,5,6,7];
             data.data = [65,59,80,81,56,55,40];
             data.label= 'Temperature';
 
+            var data=Object();
+            data.xlabel=[1,2,3,4,5,6,7];
+            data.data = [65,59,80,81,56,55,40];
+            data.label= 'Humidity';
+
             showChart(data);
+            showChart1(data);
             loadData();
           });
         
