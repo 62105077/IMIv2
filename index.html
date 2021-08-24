@@ -68,7 +68,7 @@
   </div> 
 
   <script>
-      $(()=>{
+     
         function loadData(){
           //alert("Hello");
           let url ="https://api.thingspeak.com/channels/1458420/feeds.json?results=1";
@@ -98,9 +98,9 @@
                   }]
                 }
               });
+          }
 
           $(() =>{
-            
             var data= Object();
             data.xlabel = [1,2,3,4,5];
             data.data = [2,3,4,5,10];
@@ -109,11 +109,8 @@
             loadData();
 
           });
-             
 
-             
-          }
-      });
+     
       
   </script>
 </html>
