@@ -95,7 +95,7 @@
           });
       }
           function showChart(data,xlabel,id,label){
-              var ctx = document.getElementById('id').getContext('2d');
+              var ctx = document.getElementById(id).getContext('2d');
               var myChart = new Chart(ctx,{
                 type:'line',
                 data:{
@@ -108,7 +108,7 @@
               });
           }
         $(()=>{
-          var plot=Object();
+          var plot =Object();
           var xlabel=[];
           var data_t=[];
           var data_h=[];
