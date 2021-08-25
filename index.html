@@ -70,7 +70,7 @@
   </div> 
 
   <script>
-      function loadData(xlabel,data,data1,url){
+      function loadData(xlabel,data_t,data_h,url){
           //alert("Hello");
           let url ="https://api.thingspeak.com/channels/1458420/feeds.json?results=1";
         
@@ -82,59 +82,49 @@
             $("#lastTemperature").text(feeds[0].field2+" C");
             $("#lastHumidity").text(feeds[0].field1+" %");
             $("#lastUpdate").text(feeds[0].created_at);
-              for(let i=0;i<feeds.length;i++){
-                xlabel[i] = i+1;
-                data[i]=feeds[i].field1;
-                data1[i]=feeds[i].field2;
-              }
+              $each(feeeds,(k,v)=>{
+                xlabel.push(v.entry_id);
+                data_t.push(v.field1);
+                data_h.push(v.field2);
+    
+    
+              });
           })
           .fail(function(error){
             console.log(error);
           });
       }
-          function showChart(data){
+          function showChart(data,xlabel,id,label){
               var ctx = document.getElementById('myChart').getContext('2d');
               var myChart = new Chart(ctx,{
                 type:'line',
                 data:{
-                  labels:data.xlabel,
+                  labels:xlabel,
                   datasets:[{
-                      label:data.label,
-                      data:data.data
+                      label:label,
+                      data:data
                     }]
                 }
               });
           }
-          function showChart1(data1){
-              var ctx = document.getElementById('myChart1').getContext('2d');
-              var myChart = new Chart(ctx,{
-                type:'line',
-                data:{
-                  labels:data.xlabel,
-                  datasets:[{
-                      label:data.label,
-                      data:data.data
-                    }]
-                }
-              });
-          }
-          $(()=>{
-            var data=Object();
-            data.xlabel=[1,2,3,4,5,6,7];
-            data.data = [65,59,80,81,56,55,40];
-            data.label= 'Temperature';
+        $(()=>{
+          var plot=object();
+          var xlabel=[];
+          var data_t=[];
+          var data_h=[];
+          var id1 ='myChart';
+          var id2 ='myChart1';
+          var label_t ='Temperature';
+          var label_h ='Humidity';
+          let url="https://api.thingspeak.com/channels/1458420/feeds.json?results=10"
 
-            var data1=Object1();
-            data.xlabel=[1,2,3,4,5,6,7];
-            data.data = [65,59,80,81,56,55,40];
-            data.label= 'Humidity';
-           
+          loadData(xlabel,data_t,data_h,url);
+          showChart(data_t,xlabel,id1,label_t);
+          showChart(data_h,xlabel,id2,label_h);
 
-            showChart(data);
-            showChart1(data);
-            loadData();
-          });
-        
+        })
+         
+         
      
       
   </script>
