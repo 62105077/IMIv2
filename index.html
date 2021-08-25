@@ -71,7 +71,7 @@
   </div> 
 
   <script>
-      function loadData(xlabel,data_t,data_h,url){
+      function loadData(xlabel,data_h,data_t,url){
           //alert("Hello")
         
           $.getJSON(url,function(data){
@@ -84,8 +84,8 @@
             $("#lastUpdate").text(feeds[0].created_at);
               $.each(feeds,(k,v)=>{
                 xlabel.push(v.entry_id);
-                data_t.push(v.field1);
-                data_h.push(v.field2);
+                data_h.push(v.field1);
+                data_t.push(v.field2);
     
     
               });
@@ -110,17 +110,17 @@
         $(()=>{
           var plot =Object();
           var xlabel=[];
-          var data_t=[];
           var data_h=[];
+          var data_t=[];
           var id1 ='myChart';
           var id2 ='myChart1';
-          var label_t ='Temperature';
           var label_h ='Humidity';
+          var label_t='Temperature';
           let url="https://api.thingspeak.com/channels/1458420/feeds.json?results=20";
 
-          loadData(xlabel,data_t,data_h,url);
-          showChart(data_t,xlabel,id1,label_t);
-          showChart(data_h,xlabel,id2,label_h);
+          loadData(xlabel,data_h,data_t,url);
+          showChart(data_h,xlabel,id1,label_h);
+          showChart(data_t,xlabel,id2,label_t);
 
         })
          
