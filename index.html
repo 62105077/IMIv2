@@ -78,10 +78,10 @@
          
             //console.log(data.channel.name);
             let feeds = data.feeds;
-            console.log(feeds[0]);
-            $("#lastTemperature").text(feeds[0].field2+" C");
-            $("#lastHumidity").text(feeds[0].field1+" %");
-            $("#lastUpdate").text(feeds[0].created_at);
+            console.log(feeds[9]);
+            $("#lastTemperature").text(feeds[9].field2+" C");
+            $("#lastHumidity").text(feeds[9].field1+" %");
+            $("#lastUpdate").text(feeds[9].created_at);
               $.each(feeds,(k,v)=>{
                 xlabel.push(v.entry_id);
                 data_h.push(v.field1);
