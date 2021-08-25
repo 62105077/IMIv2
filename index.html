@@ -26,7 +26,7 @@
    
   </body>
   <div class="container">
-    <center><h1>62105077 </h1></center>
+    <center><h1>62105077 Nirawan Ausakan </h1></center>
     <div class="row">
       <div class="col-6">
         <canvas id="myChart"width="400" height="200"></canvas>
@@ -72,18 +72,17 @@
 
   <script>
       function loadData(xlabel,data_t,data_h,url){
-          //alert("Hello");
-          let url ="https://api.thingspeak.com/channels/1458420/feeds.json?results=1";
+          //alert("Hello")
         
-          $.getJSON(url)
-          .done(function(data){
+          $.getJSON(url,function(data){
+         
             //console.log(data.channel.name);
             let feeds = data.feeds;
             console.log(feeds[0]);
             $("#lastTemperature").text(feeds[0].field2+" C");
             $("#lastHumidity").text(feeds[0].field1+" %");
             $("#lastUpdate").text(feeds[0].created_at);
-              $each(feeeds,(k,v)=>{
+              $each(feeds,(k,v)=>{
                 xlabel.push(v.entry_id);
                 data_t.push(v.field1);
                 data_h.push(v.field2);
@@ -96,7 +95,7 @@
           });
       }
           function showChart(data,xlabel,id,label){
-              var ctx = document.getElementById('myChart').getContext('2d');
+              var ctx = document.getElementById('id').getContext('2d');
               var myChart = new Chart(ctx,{
                 type:'line',
                 data:{
@@ -117,7 +116,7 @@
           var id2 ='myChart1';
           var label_t ='Temperature';
           var label_h ='Humidity';
-          let url="https://api.thingspeak.com/channels/1458420/feeds.json?results=10";
+          let url="https://api.thingspeak.com/channels/1458420/feeds.json?results=20";
 
           loadData(xlabel,data_t,data_h,url);
           showChart(data_t,xlabel,id1,label_t);
