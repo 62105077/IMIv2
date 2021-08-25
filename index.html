@@ -19,7 +19,8 @@
         <div class="col-4"></div>
       </div>
     
-  
+    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
    
@@ -99,15 +100,15 @@
                 }
               });
           }
-          function showChart1(data1){
+          function showChart1(data){
               var ctx = document.getElementById('myChart1').getContext('2d');
-              var myChart1 = new Chart(ctx,{
+              var myChart = new Chart(ctx,{
                 type:'line',
                 data:{
                   labels:data.xlabel,
                   datasets:[{
-                      label:label1,
-                      data:data1
+                      label:data.label,
+                      data:data.data
                     }]
                 }
               });
@@ -120,12 +121,12 @@
 
             var data1=Object();
             data.xlabel=[1,2,3,4,5,6,7];
-            data.data1 = [65,59,80,81,56,55,40];
-            data.label1= 'Humidity';
+            data.data = [65,59,80,81,56,55,40];
+            data.label= 'Humidity';
            
 
             showChart(data);
-            showChart1(data1);
+            showChart1(data);
             loadData();
           });
         
